@@ -23,3 +23,4 @@ echo "📌 Useful commands:"
 echo "  - Check logs: journalctl --user -u dsc-rpc -f"
 echo "  - Restart service: systemctl --user restart dsc-rpc"
 echo "  - Stop service: systemctl --user stop dsc-rpc"
+.
