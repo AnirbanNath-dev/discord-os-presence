@@ -1,0 +1,14 @@
+[Unit]
+Description=Discord RPC Client
+After=network.target
+
+[Service]
+ExecStart=FOLDER_PATH/.venv/bin/python3 FOLDER_PATH/src/client.py
+Restart=always
+WorkingDirectory=FOLDER_PATH
+Environment="PATH=FOLDER_PATH/.venv/bin"
+StandardOutput=append:FOLDER_PATH/logs/rpc.log
+StandardError=append:FOLDER_PATH/logs/rpc_error.log
+
+[Install]
+WantedBy=default.target

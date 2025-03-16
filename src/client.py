@@ -19,7 +19,7 @@ class DiscordRPC:
         distro = get_distro()
         try:
             self.rpc.update(
-                state=f"</> OS: {os_name} | 💻 CPU: {cpu_usage}{f" | 🐧 Distro: {distro}" if distro else ""}",
+                state=f"</> OS: {os_name} | 💻 CPU: {cpu_usage}{" | 🐧 Distro: {}".format(distro) if distro else ""}",
                 details=f"⚡ Battery: {battery_percent}\n | 🖥 Memory: {memory_usage}",
                 large_image="arch",
                 large_text=f"Uptime : {uptime_str}",
