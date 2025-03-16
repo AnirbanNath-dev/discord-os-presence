@@ -1,0 +1,11 @@
+[Unit]
+Description=Discord RPC Client
+After=network.target
+
+[Service]
+ExecStart=/home/anirban/Desktop/os-presence/.venv/bin/python3 /home/anirban/Desktop/os-presence/src/client.py
+Restart=always
+WorkingDirectory=/home/anirban/Desktop/os-presence
+Environment="PATH=/home/anirban/Desktop/os-presence/.venv/bin"
+StandardOutput=append:/home/anirban/Desktop/os-presence/logs/rpc.log
+StandardError=append:/home/anirban/Desktop/os-presence/logs/rpc_error.log
