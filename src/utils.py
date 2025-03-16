@@ -3,6 +3,10 @@ import platform
 from time import time
 from math import floor
 
+def get_distro():
+        distro_info = platform.freedesktop_os_release()
+        return distro_info.get("NAME" , None)
+
 def get_system_stats():
         os_name = platform.system()
         battery = psutil.sensors_battery()

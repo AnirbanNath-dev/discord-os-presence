@@ -1,6 +1,6 @@
 from pypresence import Presence
 from time import sleep
-from utils import get_system_stats
+from utils import get_system_stats , get_distro
 class DiscordRPC:
     
     def __init__(self):
@@ -16,9 +16,10 @@ class DiscordRPC:
 
     def update_presence(self):
         os_name, battery_percent, cpu_usage, memory_usage, uptime_str= get_system_stats()
+        distro = get_distro()
         try:
             self.rpc.update(
-                state=f"</> OS: {os_name} | 💻 CPU: {cpu_usage}",
+                state=f"</> OS: {os_name} | 💻 CPU: {cpu_usage}{f" | 🐧 Distro: {distro}" if distro else ""}",
                 details=f"⚡ Battery: {battery_percent}\n | 🖥 Memory: {memory_usage}",
                 large_image="arch",
                 large_text=f"Uptime : {uptime_str}",
