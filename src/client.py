@@ -1,6 +1,11 @@
 from pypresence import Presence
 from time import sleep
-from utils import get_system_stats , get_distro
+from utils import (
+    get_system_stats , 
+    get_distro , 
+    get_os_name
+)
+
 class DiscordRPC:
     
     def __init__(self):
@@ -15,14 +20,15 @@ class DiscordRPC:
             print(f"❌ Error connecting to Discord RPC: {e}")
 
     def update_presence(self):
-        os_name, battery_percent, cpu_usage, memory_usage, uptime_str= get_system_stats()
+        os_name = get_os_name()
+        battery_percent, cpu_usage, memory_usage, uptime_str , power_plugged= get_system_stats()
         distro = get_distro()
         try:
             self.rpc.update(
                 state=f"</> OS: {os_name} | 💻 CPU: {cpu_usage}{" | 🐧 Distro: {}".format(distro) if distro else ""}",
                 details=f"⚡ Battery: {battery_percent}\n | 🖥 Memory: {memory_usage}",
                 large_image="arch",
-                large_text=f"Uptime : {uptime_str}",
+                large_text=f"Uptime : {uptime_str} | Charging : {"Off" if power_plugged == False else "On"}",
                 small_image="neovim",
                 small_text="Neovim",
                 

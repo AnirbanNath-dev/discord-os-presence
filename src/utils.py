@@ -7,13 +7,16 @@ def get_distro():
         distro_info = platform.freedesktop_os_release()
         return distro_info.get("NAME" , None)
 
+def get_os_name():
+        return platform.system()
+
 def get_system_stats():
-        os_name = platform.system()
         battery = psutil.sensors_battery()
         battery_percent = f"{round(battery.percent,1)}%" if battery else "N/A"
         cpu_usage = f"{psutil.cpu_percent()}%" 
         memory = psutil.virtual_memory() 
         memory_usage = f"{memory.percent}%" 
+        power_plugged = battery.power_plugged
         
         uptime = time() - psutil.boot_time()
         uptime_hours = int(uptime // 3600)
@@ -22,4 +25,4 @@ def get_system_stats():
         uptime_str = f"{floor(uptime_hours)}h {uptime_minutes}m {uptime_seconds}s"
 
 
-        return os_name, battery_percent, cpu_usage, memory_usage, uptime_str
+        return battery_percent, cpu_usage, memory_usage, uptime_str , power_plugged
